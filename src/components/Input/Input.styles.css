@@ -1,0 +1,50 @@
+.input-field > input,
+textarea {
+  resize: none;
+  border-radius: 0;
+  background: none;
+  outline: none;
+  width: 20em;
+  margin: 0.5rem 0;
+  color: var(--black-text-color);
+  border: 1.5px solid var(--primary-bg-color);
+  padding: 0.5em;
+  font-family: "Lato", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.input-field > input::placeholder,
+textarea::placeholder {
+  font-family: "Lato", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+  color: var(--black-75-text-color);
+  font-size: 0.85em;
+}
+
+.input-field {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.input-field > span,
+.errors-field {
+  line-height: 0.5em;
+  font-size: 0.75em;
+  color: rgb(157, 13, 13);
+  margin: 0.25em 0 0.5em;
+}
+
+.input-field > input:focus,
+textarea:focus {
+  color: var(--secondary-bg-color);
+  border: 2.5px solid var(--secondary-bg-color);
+  font-weight: 900;
+  background-color: var(--primary-bg-color);
+}
+
+.input-field > input:focus::placeholder, textarea:focus::placeholder {
+  color: var(--secondary-placehoder-color);
+  font-weight: 900;
+}

@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+  --primary-bg-white-color: #3C3737;
+  
+  --primary-bg-color: #FFDB7B;
+  --secondary-bg-color: #E48037;
+  --tertiary-bg-color: #A06306;
+  
+  --secondary-placehoder-color: #E48037;
+  --white-75-color: #3C3737;
+  --black-75-color:#FED159;
+  
+  --black-text-color: #FED159;
+  --black-75-text-color: #f2c037bd;
+  --white-50-text-color: #E48037;
+  --white-black-text-color: #A06306;
+
+  --primary-text-color: #E48037;  
+  --primary-link-text-color: #E48037;
+  --secondary-link-text-color: #FFDB7B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  line-height: 30px;
+}
+
+body {
+  font-family: "Lato", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--primary-bg-white-color);
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 850px) {
+  html {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 550px) {
+  html {
+    font-size: 6px;
+  }
+
+  .fc {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  section {
+    width: 100vw;
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 2.5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e1dede;
+}
+
+
+.fc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fcc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

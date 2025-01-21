@@ -1,0 +1,12 @@
+section.home > img {
+  height: 45em;
+  width: 30em;
+  /* background-size: cover; */
+  background-position: bottom;
+}
+
+@media (max-width: 550px) {
+  .home__sectionA-texts {
+    order: -1;
+  }
+}

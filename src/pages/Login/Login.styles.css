@@ -1,0 +1,42 @@
+.login {
+  /* width: 100vw; */
+  height: 100vh;
+
+}
+
+.login__left {
+  flex-direction: column;
+  flex: 1;
+}
+
+.login__form {
+  flex-direction: column;
+  gap: .5em;
+}
+
+.login__company {
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--primary-bg-color);
+}
+
+.login__company>h5 {}
+
+
+@media (max-width: 550px) {
+  .login__company {
+    display: none;
+  }
+
+  .login__left {
+    padding: 0 5em;
+    gap: 5em;
+
+  }
+
+  .login__form {
+    gap: 2.5em;
+  }
+
+}

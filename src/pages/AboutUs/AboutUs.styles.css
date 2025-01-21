@@ -1,0 +1,12 @@
+.about-us__container{
+    padding: 5em 0em;
+    /* width: 100%; */
+}
+
+.about-us__whyus {
+    background-color: var(--primary-bg-color);
+    padding: 10em 5em;
+    flex-direction: column;
+    gap: 2em;
+  }
+  

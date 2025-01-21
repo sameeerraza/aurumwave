@@ -1,0 +1,30 @@
+footer {
+  gap: 5em;
+  justify-content: space-between !important;
+  padding: 2.5em 5em;
+  color: var(--white-50-text-color);
+  background-color: var(--primary-bg-color);
+  border-top: 0.5px solid var(--secondary-bg-color);
+}
+
+footer > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-comapny-name {
+  padding-bottom: 0.5em;
+  font-size: 2em;
+  color: var(--secondary-bg-color);
+  font-family: "Oswald", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+footer > div > h5 {
+  color: var(--white-50-text-color);
+  padding-bottom: 0.5em;
+}
+
+footer > div > div > input {
+  color: var(--primary-bg-color) !important;
+}

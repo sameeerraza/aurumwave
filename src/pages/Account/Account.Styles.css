@@ -1,0 +1,13 @@
+.account {
+    background-image: url("../../assets/images/accountBg.webp");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+}
+
+.account__blur {
+    backdrop-filter: blur(.75em);
+    width: 100%;
+    padding: 10em 5em;
+    background-color: #f4f4f48a;
+}

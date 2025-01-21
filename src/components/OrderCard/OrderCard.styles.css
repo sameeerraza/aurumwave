@@ -1,0 +1,36 @@
+.order-card {
+  /* border: 1px solid var(--primary-bg-color); */
+  width: 80%;
+  height: 12.5vw;
+  background-color: var(--white-75-color);
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.25);
+  padding: 2.5em;
+  margin-bottom: 2.5em;
+  gap: 0.5em;
+}
+.order-card > img {
+  max-width: 10%;
+  max-height: 100%;
+  flex: 1;
+  filter: drop-shadow(0px 0px 0.5rem rgba(0, 0, 0, 0.2));
+}
+
+.order-card >a {
+  flex-grow: 1;
+}
+
+.order-card:hover {
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 850px) {
+  .order-card {
+    width: 100%;
+    height: 15em;
+    margin-bottom: 5em;
+  }
+
+  .order-card > img {
+    width: 25%;
+  }
+}

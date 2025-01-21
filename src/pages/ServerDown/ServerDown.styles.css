@@ -1,0 +1,13 @@
+.server-down__container {
+  height: 100vh;
+  width: 100vw;
+  gap: 2.5rem;
+}
+.server-down__image {
+  width: 20rem;
+}
+
+.server-down__line {
+  height: 20rem;
+  border: 1px solid var(--primary-bg-color);
+}
