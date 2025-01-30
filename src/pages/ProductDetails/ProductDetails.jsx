@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 import AuthContext from "../../context/AuthContext";
+import CartContext from "../../context/CartContext";
 import Header from "../../containers/Header/Header";
 import Footer from "../../containers/Footer/Footer";
 
@@ -23,6 +24,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
 
   const { authTokens } = useContext(AuthContext);
+  const { addToCart } = useContext(CartContext);
 
   const [product, setRequet] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,27 +60,27 @@ const ProductDetails = () => {
     usefetchProductDetails();
   }, []);
 
-  const confirmOrder = async () => {
-    try {
-      setIsLoading(true);
-      await axios.post(
-        `${process.env.REACT_APP_API_DOMAIN_URL}/orders`,
-        { product_id: product_id },
-        {
-          headers: {
-            Authorization: `Bearer ${String(authTokens.access)}`,
-          },
-        }
-      );
-      updateSuccessNavigateAlert("Order confirmed.");
+  // const addToCart = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     await axios.post(
+  //       `${process.env.REACT_APP_API_DOMAIN_URL}/orders`,
+  //       { product_id: product_id },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${String(authTokens.access)}`,
+  //         },
+  //       }
+  //     );
+  //     updateSuccessNavigateAlert("Order confirmed.");
 
-      // navigate("/");
-    } catch (error) {
-      setErrors(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     // navigate("/");
+  //   } catch (error) {
+  //     setErrors(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <>
@@ -104,21 +106,21 @@ const ProductDetails = () => {
                 <p>{product.description}</p>
               </div>
 
-             
+
               <div>
                 <h5>Product Price</h5>
                 <p>$ {product.price}</p>
               </div>
-           
+
 
               <Button
-                text="Confirm"
+                text="Add to cart"
                 style={{
                   backgroundColor: "var(--primary-bg-color)",
                   color: "var(--white-black-text-color)",
                   marginTop: "2em",
                 }}
-                onClick={confirmOrder}
+                onClick={() => addToCart(product)}
               />
             </div>
           </div>

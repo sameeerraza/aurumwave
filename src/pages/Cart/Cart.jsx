@@ -7,6 +7,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import Footer from "../../containers/Footer/Footer";
 import Header from "../../containers/Header/Header";
+import CartContext from "../../context/CartContext";
 
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Button from "../../components/Button/Button";
@@ -15,18 +16,19 @@ import CenterText from "../../components/CenterText/CenterText";
 import "./Cart.styles.css";
 import images from "../../assets/images";
 import data from "../../assets/data"
+import OrderCard from "../../components/OrderCard/OrderCard";
+import CartCard from "../../components/CartCard/CartCard";
 
 
 const CartPlan = () => {
   let { user, authTokens } = useContext(AuthContext);
+  const { cart, removeFromCart, clearCart } = useContext(CartContext);
+
 
   const { cartBG } = images
   const { toastOptions } = data;
 
-  const [todayMeals, setTodayMeals] = useState();
-  const [schedule, setSchedule] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [updateData, setUpdateData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [updateErrors, setUpdateErrors] = useState(null);
   const navigate = useNavigate();
 
@@ -41,46 +43,29 @@ const CartPlan = () => {
     ...toastOptions
   })
 
-  useEffect(() => {
-    const fetchCurrentCart = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_DOMAIN_URL}/cart`,
-          {
-            headers: {
-              Authorization: `Bearer ${String(authTokens.access)}`,
-            },
-          }
-        );
-        const data = response.data;
-        setTodayMeals(data.cart);
-        setSchedule(data.schedule);
-      } catch (error) {
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
-    fetchCurrentCart();
-  }, [updateData, authTokens.access]);
+  const checkout = async () => {
 
-  const updateCart = async () => {
+    const cartItems = cart.map((item) => item.id);
+    console.log(cartItems, "cartItems");
+    
+
     try {
       setIsLoading(true);
-      const response = await axios.patch(
-        `${process.env.REACT_APP_API_DOMAIN_URL}/cart`, {},
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_DOMAIN_URL}/orders`, {'product_ids': cartItems},
         {
           headers: {
             Authorization: `Bearer ${String(authTokens.access)}`,
           },
         }
       );
-      updateSuccessAlert("Succesfully updated")
+      // updateSuccessAlert("Succesfully updated")
 
-      if (response.status === 202) updateSuccessNavigateAlert(response.data?.message)
+      if (response.status === 201) navigate("/")
 
-      setUpdateData(response.data)
+
+      clearCart()
 
     } catch (error) {
 
@@ -101,10 +86,32 @@ const CartPlan = () => {
         <LoadingSpinner />
       ) : (
 
-        <div className="cart">
+        cart?.length === 0 ? (
 
-        <CenterText text='Add a product view one' buttonText='Add' buttonURL='/products' />
-        </div> 
+          <div className="cart">
+
+            <CenterText text='Add a product view one' buttonText='Add' buttonURL='/products' />
+          </div>) : (
+          <div className="cart fcc">
+
+            <h2>Cart</h2>
+
+            <div className="cart__items fcc">
+              {cart.map((item) => (
+                <CartCard product={item} />
+              ))}
+            </div>
+
+            <div className="cart__actions fc">
+              <Button text="Clear Cart" onClick={clearCart} style={{
+                backgroundColor: "transparent",
+                border: "1px solid  var(--secondary-placehoder-color)",
+                color: "var(--secondary-bg-color)",
+              }} />
+              <Button text="Checkout" onClick={checkout} />
+            </div>
+          </div>)
+
 
       )}
       <ToastContainer />

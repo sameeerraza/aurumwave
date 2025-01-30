@@ -1,16 +1,27 @@
 .cart {
-    flex-direction: column;
-    background-image: url("../../assets/images/cartBg.png");
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: cover;
-    background-position: 80rem 0;
-    background-size: 29%;
-  }
-  
-  .cart__blur {
-    backdrop-filter: blur(.75rem);
-    width: 100%;
-    padding: 7.5rem 5rem;
-    background-color: #f4f4f48a;
-  }
+  flex-direction: column;
+  background-image: url("../../assets/images/cartBg.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  background-position: 80rem 0;
+  background-size: 29%;
+  gap: 5rem;
+  margin: 5rem 0;
+}
+
+.cart__blur {
+  backdrop-filter: blur(.75rem);
+  width: 100%;
+  padding: 7.5rem 5rem;
+  background-color: #f4f4f48a;
+}
+
+
+.cart__items{
+  width: 80vw;
+}
+
+.cart__actions{
+  gap: 2.5rem;
+}

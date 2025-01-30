@@ -9,8 +9,10 @@ import Footer from "../../containers/Footer/Footer";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Input from "../../components/Input/Input";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { LuBrainCircuit } from "react-icons/lu"; // Import the desired icon
 
 import "./BrowseProducts.styles.css";
+import Button from "../../components/Button/Button";
 
 const Products = ({ paramsUrl }) => {
   const { authTokens, user } = useContext(AuthContext);
@@ -53,7 +55,7 @@ const Products = ({ paramsUrl }) => {
           {!products || products.length === 0 ? (
             <div style={{ margin: '10rem auto', textAlign: 'center' }}>
               <h3
-                // style={{ marginBottom: "5rem" }}
+              // style={{ marginBottom: "5rem" }}
               >
                 No products available     </h3>
             </div>
@@ -77,6 +79,8 @@ const Products = ({ paramsUrl }) => {
   );
 };
 
+
+
 const BrowseProducts = () => {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");
@@ -88,22 +92,34 @@ const BrowseProducts = () => {
     { value: "-created_at", label: "Newest" },
     { value: "created_at", label: "Oldest" },
   ];
+  const [isAiSearch, setIsAiSearch] = useState(false);
+
+  console.log(isAiSearch, "isAiSearch");
+
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
     setProductParamsUrl(`?search=${event.target.value}`);
 
     if (sortBy != "")
-      setProductParamsUrl(`search=${event.target.value}&ordering=${sortBy}`);
-    else setProductParamsUrl(`search=${event.target.value}`);
+      setProductParamsUrl(`search=${event.target.value}&ordering=${sortBy}&advance=${isAiSearch}`);
+    else setProductParamsUrl(`search=${event.target.value}&advance=${isAiSearch}`);
   };
 
   const handleSortChange = (event) => {
     setSortBy(event.value);
 
     if (search != "")
-      setProductParamsUrl(`search=${search}&ordering=${event.value}`);
-    else setProductParamsUrl(`ordering=${event.value}`);
+      setProductParamsUrl(`search=${search}&ordering=${event.value}&advance=${isAiSearch}`);
+    else setProductParamsUrl(`ordering=${event.value}&advance=${isAiSearch}`);
+  };
+
+  const handleAdvanceChange = () => {
+
+
+    if (search != "")
+      setProductParamsUrl(`search=${search}&advance=${!isAiSearch}`);
+    else setProductParamsUrl(`advance=${!isAiSearch}`);
   };
 
   return (
@@ -123,15 +139,38 @@ const BrowseProducts = () => {
             arrowClassName="browse-products-arrow"
             controlClassName="browse-products__drop-down-control asd"
           />
-          <Input
-            id="search"
-            type="search"
-            placeholder="Search"
-            name="password"
-            value={search}
-            onChange={handleSearch}
-          />
+
+          <div className="fc" style={{ gap: "1rem" }}>
+
+            <Input
+              id="search"
+              type="search"
+              placeholder="Search"
+              name="password"
+              value={search}
+              onChange={handleSearch}
+            />
+
+            <LuBrainCircuit
+              size={30}
+              onClick={() => {
+                setIsAiSearch(!isAiSearch)
+                handleAdvanceChange()
+              }
+              }
+              style={{
+                padding: "8px", // p-2
+                borderRadius: "50%", // rounded-full
+                transition: "all 0.3s ease", // transition-all duration-300
+                backgroundColor: isAiSearch ? "var(--primary-bg-color)" : "transparent", // bg-blue-500 or bg-gray-200
+                color: isAiSearch ? "var(--primary-bg-white-color)" : "var(--primary-bg-color)", // text-white or text-gray-700
+              }}
+            />
+          </div>
+
+
         </div>
+
         <Products paramsUrl={productParamsUrl} />
       </main>
 
